@@ -1,12 +1,12 @@
 === Scr.im Email Saver ===
 Contributors: Gautam Gupta
-Donate link: http://gaut.am/donate/wp/ses/
-Tags: scrim, scr.im, mail, email, saver, comments, Gautam
-Requires at least: 2.7
-Tested up to: 3.0
-Stable tag: 0.1
+Donate link: http://wphandcraft.com/donate/wp/ses/
+Tags: scrim, scr.im, mail, email, saver, comments, Gautam, WPHandcraft, bbPress
+Requires at least: 3.0
+Tested up to: 3.1.1 / bbPress plugin-alpha-2
+Stable tag: 0.2
 
-The plugin filters your blog's comments for Email IDs and converts them into Scr.im links so that your users' Email IDs do not get picked up by bots.
+The plugin filters your blog's comments for Email IDs and converts them into Scr.im links so that your users' Email IDs do not get picked up by bots. Also works with bbPress.
 
 == Description ==
 
@@ -14,16 +14,15 @@ Do your users leave their Email IDs in their comments and you want to prevent th
 
 The plugin filters your blog's comments for Email IDs and converts them into [Scr.im](http://scr.im) links so that your users' Email IDs do not get picked up by bots and they receive less (if not zero) spam.
 
+This plugin also works with bbPress and filters the topic and reply content too!
+
 == Other Notes ==
 
 = To Do =
 Nothing for now
 
-= License =
-GNU General Public License version 3 (GPLv3): http://www.opensource.org/licenses/gpl-3.0.html
-
 = Donate =
-You may donate by going [here](http://gaut.am/donate/wp/ses/).
+You may donate by going [here](http://wphandcraft.com/donate/wp/ses/).
 
 == Installation ==
 
@@ -55,10 +54,16 @@ You may also read some questions on the scr.im's [FAQ page](http://scr.im/faq/).
 
 == Changelog ==
 
+= 0.2 (16-04-11) =
+* Now works with bbPress too!
+
 = 0.1 (30-05-10) =
 * Initial Release
 
 == Upgrade Notice ==
+
+= 0.2 =
+Works with bbPress too
 
 = 0.1 =
 Initial Release
