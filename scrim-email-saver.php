@@ -4,7 +4,7 @@
  Plugin URI: http://wphandcraft.com/plugins/scrim-email-saver/
  Description: The plugin filters your blog's comments for Email IDs and converts them into <a href="http://scr.im/">Scr.im</a> links so that your users' Email IDs do not get picked up by bots and they receive less (if not zero) spam. Also works with bbPress.
  Author: Gautam Gupta
- Author URI: http://gaut.am/
+ Author URI: http://wphandcraft.com/
  Version: 0.2
 */
 
