@@ -3,7 +3,7 @@
  Plugin Name: Scr.im Email Saver
  Plugin URI: http://wphandcraft.com/plugins/scrim-email-saver/
  Description: The plugin filters your blog's comments for Email IDs and converts them into <a href="http://scr.im/">Scr.im</a> links so that your users' Email IDs do not get picked up by bots and they receive less (if not zero) spam. Also works with bbPress.
- Author: Gautam Gupta
+ Author: gautamgupta
  Author URI: http://wphandcraft.com/
  Version: 0.2
 */
@@ -16,9 +16,8 @@ if ( !function_exists( 'ses_save_emails' ) ) : /* Same function exists in bbPres
  * Save the Emails!
  *
  * @param string $content The content to be processed
- *
- * @uses WP_Http To make the remote call
- *
+ * @uses wp_remote_post() To make the POST request
+ * @uses wp_remote_retrieve_body() To retrieve the body content of the call
  * @return string The processed content
  */
 function ses_save_emails( $content ) {
@@ -61,7 +60,7 @@ function ses_save_emails( $content ) {
 }
 endif;
 
-/* We avoid comment_text filter to prevent WP_Http calls everytime */
+/* We avoid comment_text etc filter to prevent WP_Http calls everytime */
 add_filter( 'pre_comment_content',       'ses_save_emails', -9, 1 );
 add_filter( 'bbp_new_topic_pre_content', 'ses_save_emails', -9, 1 );
 add_filter( 'bbp_new_reply_pre_content', 'ses_save_emails', -9, 1 );
