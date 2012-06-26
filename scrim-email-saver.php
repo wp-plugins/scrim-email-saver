@@ -1,22 +1,22 @@
 <?php
 /*
  Plugin Name: Scr.im Email Saver
- Plugin URI: http://wphandcraft.com/plugins/scrim-email-saver/
- Description: The plugin filters your blog's comments for Email IDs and converts them into <a href="http://scr.im/">Scr.im</a> links so that your users' Email IDs do not get picked up by bots and they receive less (if not zero) spam. Also works with bbPress.
+ Plugin URI: http://bbpep.com/plugins/scrim-email-saver/
+ Description: The plugin filters your blog's comments and bbPress posts for email IDs and converts them into <a href="http://scr.im/">Scr.im</a> links so that your users' email IDs do not get picked up by bots and they receive less (if not zero) spam.
  Author: gautamgupta
- Author URI: http://wphandcraft.com/
- Version: 0.2
+ Author URI: http://gaut.am/
+ Version: 0.3
 */
 
 /** Version */
-if ( !defined( 'SES_VER' ) ) define( 'SES_VER', '0.1' );
+if ( !defined( 'SES_VER' ) ) define( 'SES_VER', '0.3' );
 
 if ( !function_exists( 'ses_save_emails' ) ) : /* Same function exists in bbPress plugin, this is here to remove fatal errors if bbPress functions are loaded into WP */
 /**
  * Save the Emails!
  *
  * @param string $content The content to be processed
- * @uses wp_remote_post() To make the POST request
+ * @uses wp_remote_get() To make the call
  * @uses wp_remote_retrieve_body() To retrieve the body content of the call
  * @return string The processed content
  */
@@ -32,27 +32,21 @@ function ses_save_emails( $content ) {
 		/* Ok, we are in, now call the scrim api and request for generating the scrim code
 		   WP_Http does a great job for us by taking all the tensions and applying all the possible methods ;) */
 		$scrim = wp_remote_retrieve_body( /* Check if any errors are there */
-				wp_remote_post( /* Make the call */
-					'http://scr.im/xml/',
+				wp_remote_get( /* Make the call */
+					"http://scr.im/xml/email={$email}&type=text",
 					array(
-						'body'       => array( 'email' => $email ),
-						'user-agent' => 'Scr.im Email Saver WordPress Plugin v' . SES_VER  /* Brand our plugin by user agent :P */
+						'user-agent' => 'Scr.im Email Saver WordPress Plugin v' . SES_VER  /* Brand our plugin by user agent */
 					)
 				)
 			);
-		if ( !$scrim || strpos( $scrim, '<scrim>' ) === false ) /* Call failed? No scrim? Go to the next email please! */
+		if ( !$scrim || strpos( $scrim, 'http://scr.im/' ) === false ) /* Call failed? No scrim? Go to the next email please! */
 			continue;
 
-		/* Preg match the scrim, not parsing the XML so that there is no PHP 5 requirement */
-		preg_match( '/<scrim>([a-z0-9]+)<\/scrim>/i', $scrim, $code ); // Should we match upper-case letters?
-		if ( !$code = $code[1] ) /* No code? Go to the next email please! */
-			continue;
+		$scrim = trim( $scrim ); /* Make the URL */
 
-		$url = 'http://scr.im/' . $code; /* Make the URL */
-
-		/* All done, now replace the actual mail with the URL
-		   We dont need <a href> or rel=nofollow because the make_clickable filter on post_text does that for us :D */
-		$content = str_replace( $email, $url, $content );
+		/* All done, now replace the actual email id with the URL
+		   We dont need <a href> or rel=nofollow because the make_clickable filter on post_text does that for us */
+		$content = str_replace( $email, $scrim, $content );
 	}
 
 	/* Finally, return the content */
@@ -61,6 +55,8 @@ function ses_save_emails( $content ) {
 endif;
 
 /* We avoid comment_text etc filter to prevent WP_Http calls everytime */
-add_filter( 'pre_comment_content',       'ses_save_emails', -9, 1 );
-add_filter( 'bbp_new_topic_pre_content', 'ses_save_emails', -9, 1 );
-add_filter( 'bbp_new_reply_pre_content', 'ses_save_emails', -9, 1 );
+add_filter( 'pre_comment_content',        'ses_save_emails', -9, 1 );
+add_filter( 'bbp_new_topic_pre_content',  'ses_save_emails', -9, 1 );
+add_filter( 'bbp_new_reply_pre_content',  'ses_save_emails', -9, 1 );
+add_filter( 'bbp_edit_topic_pre_content', 'ses_save_emails', -9, 1 );
+add_filter( 'bbp_edit_reply_pre_content', 'ses_save_emails', -9, 1 );

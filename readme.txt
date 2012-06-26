@@ -1,20 +1,18 @@
 === Scr.im Email Saver ===
 Contributors: Gautam Gupta
-Donate link: http://wphandcraft.com/donate/wp/ses/
-Tags: scrim, scr.im, mail, email, saver, comments, Gautam, WPHandcraft, bbPress
-Requires at least: 3.0
-Tested up to: 3.1.1 / bbPress plugin-alpha-2
-Stable tag: 0.2
+Donate link: http://bbpep.com/donate/
+Tags: scrim, scr.im, mail, email, saver, comments, Gautam, bbPep, bbPress
+Requires at least: 3.4 / bbPress 2.0
+Tested up to: 3.4 / bbPress 2.1
+Stable tag: 0.3
 
-The plugin filters your blog's comments for Email IDs and converts them into Scr.im links so that your users' Email IDs do not get picked up by bots. Also works with bbPress.
+The plugin filters your blog's comments and bbPress posts for email IDs and converts them into Scr.im links so that your users' email IDs do not get picked up by bots.
 
 == Description ==
 
 Do your users leave their Email IDs in their comments and you want to prevent that? Well, then this plugin is pefect for you!
 
-The plugin filters your blog's comments for Email IDs and converts them into [Scr.im](http://scr.im) links so that your users' Email IDs do not get picked up by bots and they receive less (if not zero) spam.
-
-This plugin also works with bbPress and filters the topic and reply content too!
+The plugin filters your blog's comments and bbPress forum posts for email IDs and converts them into [Scr.im](http://scr.im) links so that your users' email IDs do not get picked up by bots and they receive less (if not zero) spam.
 
 == Other Notes ==
 
@@ -22,7 +20,7 @@ This plugin also works with bbPress and filters the topic and reply content too!
 Nothing for now
 
 = Donate =
-You may donate by going [here](http://wphandcraft.com/donate/wp/ses/).
+You may donate by going [here](http://bbpep.com/donate/).
 
 == Installation ==
 
@@ -37,9 +35,8 @@ You may either install the plugin via the in-built installer in WordPress or fol
 = 1. What is Scr.im? =
 You may read more about Scr.im on its [about page](http://scr.im/about/).
 
-= 2. How do I change the Email addresses for the comments that have been already posted? =
-Well, there is really no method, but you may click the "edit" link below the comment which has emails, and then click update comment.
-The plugin would then convert all Emails in the comment to Scr.im URLs.
+= 2. How do I change the Email addresses for the comments or bbPress posts that have been already posted? =
+Well, there is really no method, but you may edit the comment or bbPress post which has email IDs, and then click update (even without editing anything) - this would make the plugin run its email ID search on that content again.
 
 = 3. If I disable the plugin, will all the scr.im URLs vanish? =
 No.
@@ -54,6 +51,9 @@ You may also read some questions on the scr.im's [FAQ page](http://scr.im/faq/).
 
 == Changelog ==
 
+= 0.3 (26-06-12) =
+* Updated to make it work with the new scr.im API.
+
 = 0.2 (16-04-11) =
 * Now works with bbPress too!
 
@@ -61,6 +61,9 @@ You may also read some questions on the scr.im's [FAQ page](http://scr.im/faq/).
 * Initial Release
 
 == Upgrade Notice ==
+
+= 0.3 =
+Updated to make it work with the new scr.im API.
 
 = 0.2 =
 Works with bbPress too
